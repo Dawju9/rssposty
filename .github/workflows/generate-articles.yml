@@ -1,0 +1,61 @@
+name: Article Generation
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+    inputs:
+      keywords:
+        description: 'Keywords for article generation (comma separated)'
+        required: false
+        default: 'kompetencje miękkie, rozwój zespołu'
+      style:
+        description: 'Writing style'
+        required: false
+        default: 'professional'
+        type: choice
+        options:
+          - professional
+          - casual
+          - news
+      count:
+        description: 'Number of articles to generate'
+        required: false
+        default: '5'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate articles
+        run: |
+          echo "=== Article Generation Started at $(date) ==="
+          node src/index.js generate -k "${{ github.event.inputs.keywords || 'kompetencje miękkie, rozwój zespołu' }}" -s "${{ github.event.inputs.style || 'professional' }}" -n ${{ github.event.inputs.count || 5 }}
+          echo "=== Article Generation Completed at $(date) ==="
+        env:
+          OLLAMA_HOST: ${{ secrets.OLLAMA_HOST }}
+        continue-on-error: true
+
+      - name: Upload generated articles
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-articles-${{ github.run_id }}
+          path: generated-articles.json
+          retention-days: 7
+
+      - name: Generate timestamp summary
+        run: |
+          echo "Run ID: ${{ github.run_id }}"
+          echo "Started at: $(date -d @${GITHUB_OUTPUT%.*} '+%Y-%m-%d %H:%M:%S' 2>/dev/null || date)"
