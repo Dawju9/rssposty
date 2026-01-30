@@ -1,0 +1,11 @@
+{
+  "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQTzRCWElfWXljY21lVHNmYXpHLS1KZDBXYTVaSjh3aWYxV29ZZzJkSmNiU01PVXRMNER5Y0JLMUtjeFVEVDNRRmRwSUpReTNPVUg3U1BjVC1BWmFkaXk0TEg4V0h6S2VXVnV2d2VYYWp2eWtwRVZwM0NzemNNNVR1LTdPM1VFVXVnQVIwWk4wVmxJQQ?oc=5",
+  "title": "Google News",
+  "content": "window.wiz_progress&&window.wiz_progress();window.wiz_tick&&window.wiz_tick('lW1Lhc');(function(){'use strict';var c=window,d=;c.aft_counter=d;var e=,f=0;function _recordIsAboveFold(a){if(!c._isLazyImage(a)&&!a.hasAttribute(\"data-noaft\")&&a.src){var b=(c._isVisible||function(){})(c.document,a);a.setAttribute(\"data-atf\",b);b&&(e.indexOf(a)!==-1||d.indexOf(a)!==-1||a.complete||d.push(a),a.hasAttribute(\"data-iml\")&&(a=Number(a.getAttribute(\"data-iml\")),a>f&&(f=a)))}} c.initAft=function(){f=0;e=Array.prototype.slice.call(document.getElementsByTagName(\"img\")).filter(function(a){return!!a.getAttribute(\"data-iml\")});.forEach.call(document.getElementsByTagName(\"img\"),function(a){try{_recordIsAboveFold(a)}catch(b){throw b.message=a.hasAttribute(\"data-iid\")?b.message+\"\\nrecordIsAboveFold error for defer inlined image\":b.message+(\"\\nrecordIsAboveFold error for img element with <src: \"+a.src+\">\"),b;}});if(d.length===0)c.onaft(f)};}).call(this); initAft()if (window) {const wjd = {}; window(wjd); delete window;}window.wiz_progress&&window.wiz_progress();window.stopScanForCss&&window.stopScanForCss(); ccTick('bl');",
+  "excerpt": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
+  "publishedAt": "2026-01-30T18:00:16.935Z",
+  "author": null,
+  "siteName": "Google News",
+  "fetchedAt": "2026-01-30T18:00:16.935Z",
+  "source": "web"
+}

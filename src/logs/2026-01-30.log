@@ -1,0 +1,68 @@
+[2026-01-30T17:55:05.826Z] [WARN] Config warnings {"warnings":["wordpress endpoint is incomplete - publishing will be skipped"]}
+[2026-01-30T17:55:05.865Z] [INFO] Ollama connected
+[2026-01-30T17:55:05.865Z] [INFO] RCAgent initialized
+[2026-01-30T17:55:14.971Z] [WARN] Config warnings {"warnings":["wordpress endpoint is incomplete - publishing will be skipped"]}
+[2026-01-30T17:55:15.025Z] [INFO] Ollama connected
+[2026-01-30T17:55:15.027Z] [INFO] RCAgent initialized
+[2026-01-30T17:55:15.027Z] [INFO] Starting fetch {"keywords":8,"options":{"keywords":null}}
+[2026-01-30T17:55:15.027Z] [INFO] Fetching RSS feeds
+[2026-01-30T17:55:26.250Z] [ERROR] RSS fetch failed {"error":"this.log?.info is not a function"}
+[2026-01-30T17:55:26.251Z] [INFO] Searching web
+[2026-01-30T17:55:27.255Z] [ERROR] Web search failed {"error":"this.log?.warn is not a function"}
+[2026-01-30T17:55:27.255Z] [INFO] Fetch completed {"rss":0,"web":0,"total":0}
+[2026-01-30T17:56:25.863Z] [WARN] Config warnings {"warnings":["wordpress endpoint is incomplete - publishing will be skipped"]}
+[2026-01-30T17:56:25.888Z] [INFO] Ollama connected
+[2026-01-30T17:56:25.888Z] [INFO] RCAgent initialized
+[2026-01-30T17:56:25.889Z] [INFO] Starting fetch {"keywords":8,"options":{"keywords":null}}
+[2026-01-30T17:56:25.889Z] [INFO] Fetching RSS feeds
+[2026-01-30T17:56:33.665Z] [ERROR] RSS fetch failed {"error":"this.log?.info is not a function"}
+[2026-01-30T17:56:33.665Z] [INFO] Searching web
+[2026-01-30T17:56:34.672Z] [ERROR] Web search failed {"error":"this.log?.warn is not a function"}
+[2026-01-30T17:56:34.672Z] [INFO] Fetch completed {"rss":0,"web":0,"total":0}
+[2026-01-30T17:58:50.326Z] [WARN] Config warnings {"warnings":["wordpress endpoint is incomplete - publishing will be skipped"]}
+[2026-01-30T17:58:50.367Z] [INFO] Ollama connected
+[2026-01-30T17:58:50.367Z] [INFO] RCAgent initialized
+[2026-01-30T17:58:50.368Z] [INFO] Starting fetch {"keywords":8,"options":{"keywords":null}}
+[2026-01-30T17:58:50.368Z] [INFO] Fetching RSS feeds
+[2026-01-30T17:59:01.565Z] [INFO] RSS fetch completed {"totalFeeds":10,"processed":10,"failed":0,"totalItems":10}
+[2026-01-30T17:59:01.566Z] [INFO] Searching web
+[2026-01-30T17:59:12.092Z] [INFO] Web search completed {"keywords":8,"results":0}
+[2026-01-30T17:59:12.093Z] [INFO] Fetch completed {"rss":10,"web":0,"total":10}
+[2026-01-30T17:59:30.680Z] [WARN] Config warnings {"warnings":["wordpress endpoint is incomplete - publishing will be skipped"]}
+[2026-01-30T17:59:30.726Z] [INFO] Ollama connected
+[2026-01-30T17:59:30.726Z] [INFO] RCAgent initialized
+[2026-01-30T17:59:30.726Z] [INFO] Starting fetch {"keywords":8,"options":{"keywords":null}}
+[2026-01-30T17:59:30.727Z] [INFO] Fetching RSS feeds
+[2026-01-30T17:59:38.455Z] [INFO] RSS fetch completed {"totalFeeds":10,"processed":10,"failed":0,"totalItems":10}
+[2026-01-30T17:59:38.455Z] [INFO] Searching web
+[2026-01-30T17:59:48.901Z] [INFO] Web search completed {"keywords":8,"results":0}
+[2026-01-30T17:59:48.902Z] [INFO] Fetch completed {"rss":10,"web":0,"total":10}
+[2026-01-30T17:59:57.056Z] [WARN] Config warnings {"warnings":["wordpress endpoint is incomplete - publishing will be skipped"]}
+[2026-01-30T17:59:57.100Z] [INFO] Ollama connected
+[2026-01-30T17:59:57.100Z] [INFO] RCAgent initialized
+[2026-01-30T17:59:57.101Z] [INFO] Starting fetch {"keywords":8,"options":{"keywords":null}}
+[2026-01-30T17:59:57.101Z] [INFO] Fetching RSS feeds
+[2026-01-30T18:00:05.169Z] [INFO] RSS fetch completed {"totalFeeds":10,"processed":10,"failed":0,"totalItems":10}
+[2026-01-30T18:00:05.172Z] [INFO] Searching web
+[2026-01-30T18:00:06.178Z] [DEBUG] Searching DuckDuckGo for "cryptocurrency"
+[2026-01-30T18:00:07.588Z] [DEBUG] Searching DuckDuckGo for "blockchain"
+[2026-01-30T18:00:08.899Z] [DEBUG] Searching DuckDuckGo for "defi"
+[2026-01-30T18:00:10.200Z] [DEBUG] Searching DuckDuckGo for "bitcoin"
+[2026-01-30T18:00:11.483Z] [DEBUG] Searching DuckDuckGo for "ethereum"
+[2026-01-30T18:00:12.799Z] [DEBUG] Searching DuckDuckGo for "web3"
+[2026-01-30T18:00:14.106Z] [DEBUG] Searching DuckDuckGo for "ai"
+[2026-01-30T18:00:15.441Z] [DEBUG] Searching DuckDuckGo for "technology"
+[2026-01-30T18:00:15.725Z] [INFO] Web search completed {"keywords":8,"results":0}
+[2026-01-30T18:00:15.726Z] [INFO] Fetch completed {"rss":10,"web":0,"total":10}
+[2026-01-30T18:00:16.511Z] [DEBUG] Article fetched {"url":"https://news.google.com/rss/articles/CBMinwFBVV95cUxOakduMm9UZldzYkRTdUxOeXVuUlhYeGVwNVFuNFJnbU9tQTJZMjhaS01aZkpyUGJxYW4yNEpsdlhYWWI4bW02MHRVSEpnU21zWlpTeE9kYnM2R2J4d2FXXzFnVkxWUi1KQ3hhdmNLNW9hYS1meVpEOWpzRGoyX1dUZng5MkFCX0ExR2JUMjI3RWhoRjlJWjIxdkYyekowdWM?oc=5","title":"Google News"}
+[2026-01-30T18:00:16.749Z] [DEBUG] Article fetched {"url":"https://news.google.com/rss/articles/CBMilwFBVV95cUxQMV8wWWlhUDVPdmJuYjNjNGFscnNpMmJOZFJXWFl0UkdPWlBZakhZRUZaQ2ZhNzdmaW9NaWdNSDAxXzNfZ0Zla3p3RURPNUNlT1JZaXhFbnpIX0MyOWNFOGJzbFpIWElqLTVwdlBFSXNnMTlQNF9sNVRTS2FJMGVkZmw1Z1RRWFNaUTd6Uk16WFNzZnhiVkR3?oc=5","title":"Google News"}
+[2026-01-30T18:00:16.976Z] [DEBUG] Article fetched {"url":"https://news.google.com/rss/articles/CBMikgFBVV95cUxQTzRCWElfWXljY21lVHNmYXpHLS1KZDBXYTVaSjh3aWYxV29ZZzJkSmNiU01PVXRMNER5Y0JLMUtjeFVEVDNRRmRwSUpReTNPVUg3U1BjVC1BWmFkaXk0TEg4V0h6S2VXVnV2d2VYYWp2eWtwRVZwM0NzemNNNVR1LTdPM1VFVXVnQVIwWk4wVmxJQQ?oc=5","title":"Google News"}
+[2026-01-30T18:00:17.479Z] [DEBUG] Cache hit for article {"url":"https://news.google.com/rss/articles/CBMipgFBVV95cUxQMnZZa0c3bnB0YjNmZjlSVmwwTjBGZUN0MHdJQ1JEMEo3UlVDZFRGM0VGWEVQOGRtbEZEb2R3NlpMaUoxWUJvMEUzWm9HWW10VHU3VUNnQXB1YVEwZnlybVJ5dHh5Y1dPcmlHQmM1R3NFYlZjSFNPM1poeXRuWWQxWm9EcWlBN0dxVHRPSWJfdHRIMmMtWWpXcDZBZG82RWxmTVFZU3J3?oc=5"}
+[2026-01-30T18:00:17.479Z] [DEBUG] Cache hit for article {"url":"https://news.google.com/rss/articles/CBMieEFVX3lxTE1Db2ZXeFZaVUhPV3FkeE9mcldrb3RPVHJJSS1aTFg5TnRuNUpsQmlaRFRGZXRoQ2lkZE1MdFllaDZTM0dJYUc5R2IxN2g1UVJDUnFFNEJQZVVWc1ZkNmhiOFYyNUkxSk1pcFdidFRWQmZmZEl5Z01XVA?oc=5"}
+[2026-01-30T18:00:17.479Z] [DEBUG] Cache hit for article {"url":"https://news.google.com/rss/articles/CBMikwFBVV95cUxNa3Q4MnFXVXEtSGRlc3I3dXVsMFVldGR4cFlac200QU1jMEtldVZZZWFfLWwwVDBQWjJhUE5xUmJ4STdHRDI1MEdGZzJESkg2OGpJcEZvZ2NpanBrRFpPSkxRZzNuRVh2SHk4MEpnVlIySUtoQ3hJLWkxYzNpT1ZjNlZMU3AxOFkxdm4xVTN5LTNBdFk?oc=5"}
+[2026-01-30T18:00:17.982Z] [DEBUG] Cache hit for article {"url":"https://news.google.com/rss/articles/CBMiiwFBVV95cUxNVlEweUZIcngyM2E2VUotQllOTlhSZ1pWSXFFRDg4dVZ1S190d3BBLTk0T1h2eHBGLWNSaW9pNy04UEJUTzhZRzljVEhXTURrUE12T2g1R3ZKSWZ5SmMwZ092NEM1NkVNV3FZT1BYNlhKNzUyc0pXamxlbEtNR2MyVHhVN2lGRDdOeTA4?oc=5"}
+[2026-01-30T18:00:17.982Z] [DEBUG] Cache hit for article {"url":"https://news.google.com/rss/articles/CBMixAFBVV95cUxPSmJXbjc2N1hhT2FwQmgtem02MUNQU0F1U200amp6WEc2VGVkSzhsNksxMnlUaHR4T3N0bmhJVi1ja3g2c1hXVjlOcHMtUnY0cDg5ZzMydllqT21FZlhJaWhlSnk3dV90VlUwWkZRckE1V0xmRFVBMUlKWWRCc2c3a2JMc1lWT0k3QWRLSV9XMjRVclFfcmoyUDFsT2NJWC1Ha01rY2VEOEppdWtGYWtvX0Y1XzZsdjAtc295MmIwTlM5eGVR?oc=5"}
+[2026-01-30T18:00:17.982Z] [DEBUG] Cache hit for article {"url":"https://news.google.com/rss/articles/CBMimAFBVV95cUxQSk1rODRrX090dG1falJNTWVHcldJLThvbFFvMmpZcUhQOXgyU1BtVGNKbHhkSENvamxESEhOcWRKNl93OUp4MV9UWEkyY2lNQlZRUkg3STh0NWpnX0tycTZZRDJsd21LQXQzNVU3QWlFMTYySkI0XzdUYlgtWC1rLWNzNWtPRzZQaVF0MlFpQlA0VTVsSVJBMg?oc=5"}
+[2026-01-30T18:00:56.854Z] [WARN] Config warnings {"warnings":["wordpress endpoint is incomplete - publishing will be skipped"]}
+[2026-01-30T18:00:56.910Z] [INFO] Ollama connected
+[2026-01-30T18:00:56.912Z] [INFO] RCAgent initialized
