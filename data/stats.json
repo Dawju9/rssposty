@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-01-30T22:29:29.039Z",
+  "database": {
+    "total": 0,
+    "fetched": 0,
+    "published": 0,
+    "failed": 0,
+    "empty": 0,
+    "success_rate": 0
+  },
+  "uptime": 0.78904802,
+  "memory": {
+    "rss": 135962624,
+    "heapTotal": 75382784,
+    "heapUsed": 26758840,
+    "external": 4109707,
+    "arrayBuffers": 235023
+  },
+  "node_version": "v18.19.1"
+}

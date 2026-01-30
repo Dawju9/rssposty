@@ -116,22 +116,45 @@ export class RSSFetcher {
         throw new Error('Invalid feed structure');
       }
 
-      return feed.items.slice(0, maxItems).map(item => ({
-        title: item.title || 'No title',
-        url: item.link || item.id || '',
-        description: this.stripHtml(item.contentSnippet || item.content || ''),
-        publishedAt: item.isoDate || item.pubDate || new Date().toISOString(),
-        source: feed.title || feedUrl,
-        sourceUrl: feedUrl,
-        author: item.creator || item.author,
-        categories: item.categories || [],
-        guid: item.guid || null,
-        source: 'rss'
-      }));
+      return feed.items.slice(0, maxItems).map(item => {
+        let url = item.link || item.id || '';
+        url = this.extractGoogleNewsRedirect(url);
+        
+        return {
+          title: item.title || 'No title',
+          url: url,
+          description: this.stripHtml(item.contentSnippet || item.content || ''),
+          publishedAt: item.isoDate || item.pubDate || new Date().toISOString(),
+          source: feed.title || feedUrl,
+          sourceUrl: feedUrl,
+          author: item.creator || item.author,
+          categories: item.categories || [],
+          guid: item.guid || null,
+          source: 'rss'
+        };
+      });
     } catch (error) {
       this.log('error', 'Failed to parse feed', { url: feedUrl, error: error.message });
       throw new Error(`Failed to parse feed: ${error.message}`);
     }
+  }
+
+  extractGoogleNewsRedirect(url) {
+    if (!url) return '';
+    
+    if (url.includes('news.google.com/rss/articles/')) {
+      try {
+        const articleIdMatch = url.match(/\/articles\/([A-Za-z0-9_-]+)/);
+        if (articleIdMatch) {
+          const articleId = articleIdMatch[1];
+          return `https://news.google.com/articles/${articleId}`;
+        }
+      } catch (error) {
+        this.log('warn', 'Failed to extract Google News article ID', { url });
+      }
+    }
+    
+    return url;
   }
 
   stripHtml(html) {

@@ -1,52 +1,59 @@
 {
   "keywords": [
-    "cryptocurrency",
-    "blockchain",
-    "defi",
-    "bitcoin",
-    "ethereum",
-    "web3",
-    "ai",
-    "technology"
+    "szkolenia sprzedażowe",
+    "kompetencje miękkie",
+    "rozwój zespołu",
+    "biznes",
+    "leadership"
   ],
   "rss": {
     "googleNews": true,
-    "customFeeds": [
-      "https://cointelegraph.com/rss",
-      "https://bitcoinmagazine.com/feed"
-    ]
+    "customFeeds": []
+  },
+  "search": {
+    "sources": ["duckduckgo", "rss"],
+    "maxResults": 10,
+    "maxAgeDays": 7,
+    "concurrency": 3,
+    "delayMs": 1000,
+    "retryAttempts": 3,
+    "retryDelay": 3000
   },
   "ollama": {
     "baseUrl": "http://localhost:11434",
-    "model": "llama3"
+    "model": "llama3.2:latest"
   },
   "article": {
     "style": "professional",
     "minLength": 500,
     "maxLength": 800
   },
-  "search": {
-    "maxResults": 10,
-    "maxAgeDays": 7,
-    "concurrency": 3,
-    "delayMs": 1000
+  "scheduler": {
+    "enabled": true,
+    "cron": "*/15 * * * *",
+    "maxArticles": 10,
+    "dryRun": false
   },
-  "endpoints": {
-    "wordpress": {
-      "url": "https://example.com/wp-json/wp/v2/posts",
-      "auth": {
-        "username": "",
-        "password": ""
-      }
+  "wordpress": {
+    "enabled": false,
+    "url": "https://deintegro.info/wp-json/wp/v2/posts",
+    "auth": {
+      "username": "lyt6td",
+      "password": "APP_PASSWORD"
     },
-    "telegram": {
-      "botToken": "",
-      "channelId": ""
-    }
+    "categories": ["Crawlfounding", "Finances"],
+    "retryAttempts": 3,
+    "retryDelay": 5000
   },
-  "publish": {
-    "dryRun": false,
-    "skipExisting": false,
-    "categories": ["News", "Technology"]
+  "database": {
+    "enabled": true,
+    "path": "./data/articles.db",
+    "maxArticles": 1000
+  },
+  "monitoring": {
+    "enabled": true,
+    "logLevel": "info",
+    "healthCheck": true,
+    "statsFile": "./data/stats.json"
   }
 }

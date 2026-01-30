@@ -111,10 +111,14 @@ export class ArticleDeduplicator {
       return article.url;
     }
 
-    const normalized = [
-      article.title?.toLowerCase().replace(/[^a-z0-9]/g, ''),
-      article.url?.toLowerCase()
-    ].join(':');
+    const title = article.title?.toLowerCase().replace(/[^a-z0-9]/g, '') || '';
+    const url = article.url?.toLowerCase() || '';
+
+    if (title.startsWith('szukaj:') || title.startsWith('search:')) {
+      return url;
+    }
+
+    const normalized = `${title}:${url}`;
 
     let hash = 0;
     for (let i = 0; i < normalized.length; i++) {
@@ -126,6 +130,7 @@ export class ArticleDeduplicator {
   }
 
   isDuplicate(article) {
+    if (!article.url) return true;
     const hash = this.hash(article);
     if (this.hashSet.has(hash)) {
       return true;

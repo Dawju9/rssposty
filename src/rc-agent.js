@@ -2,6 +2,9 @@ import { OllamaClient } from './ollama-client.js';
 import { ConfigManager } from './config-manager.js';
 import { WebSearcher } from './web-searcher.js';
 import { RSSFetcher } from './rss-fetcher.js';
+import { ArticleSourceManager } from './article-source.js';
+import { WordPressManager } from './wordpress-manager.js';
+import { ArticleDatabase } from './database.js';
 import { Logger, CacheManager } from './utils/cache.js';
 import { RateLimiter, ArticleDeduplicator, DateFilter } from './utils/validation.js';
 
@@ -10,6 +13,8 @@ export class RCAgent {
     this.configPath = options.configPath || null;
     this.configManager = new ConfigManager(this.configPath);
     this.ollamaClient = null;
+    this.wpManager = null;
+    this.db = null;
     this.config = null;
     this.articles = [];
 
@@ -28,6 +33,12 @@ export class RCAgent {
     });
 
     this.rssFetcher = new RSSFetcher({
+      logger: this.logger,
+      cache: this.cache
+    });
+
+    this.sourceManager = new ArticleSourceManager({
+      sources: ['duckduckgo', 'rss'],
       logger: this.logger,
       cache: this.cache
     });
@@ -60,6 +71,26 @@ export class RCAgent {
       }
     }
 
+    if (this.config.database?.enabled) {
+      this.db = new ArticleDatabase({
+        enabled: true,
+        path: this.config.database.path
+      });
+      this.db.initialize();
+      this.logger.info('Database initialized');
+    }
+
+    const wpConfig = this.configManager.getWordPressConfig();
+    if (wpConfig?.url && wpConfig?.auth) {
+      this.wpManager = new WordPressManager({
+        url: wpConfig.url,
+        auth: wpConfig.auth,
+        retryAttempts: this.config.wordpress?.retryAttempts || 3,
+        categories: this.config.publish?.categories || []
+      });
+      this.logger.info('WordPress manager initialized');
+    }
+
     this.logger.info('RCAgent initialized');
   }
 
@@ -67,7 +98,6 @@ export class RCAgent {
     const keywords = options.keywords || this.configManager.getKeywords();
     const searchConfig = this.configManager.getSearchConfig();
     const rssConfig = this.configManager.getRSSConfig();
-    const publishConfig = this.configManager.getPublishConfig();
 
     this.logger.info('Starting fetch', { keywords: keywords.length, options });
 
@@ -95,15 +125,14 @@ export class RCAgent {
       results.errors.push({ source: 'rss', error: error.message });
     }
 
-    try {
-      this.logger.info('Searching web');
-      results.web = await this.webSearcher.searchWeb(keywords, {
-        maxResults: searchConfig.maxResults,
-        useCache: true
-      });
-    } catch (error) {
-      this.logger.error('Web search failed', { error: error.message });
-      results.errors.push({ source: 'web', error: error.message });
+    for (const keyword of keywords) {
+      try {
+        this.logger.info('Searching web', { keyword });
+        const articles = await this.sourceManager.search(keyword, { useCache: true });
+        results.web.push(...articles);
+      } catch (error) {
+        this.logger.error('Web search failed', { keyword, error: error.message });
+      }
     }
 
     let allArticles = [...(results.rss?.items || []), ...results.web];
@@ -127,6 +156,12 @@ export class RCAgent {
     this.articles = allArticles;
     results.total = allArticles.length;
 
+    if (this.db) {
+      for (const article of allArticles) {
+        await this.db.saveArticle(article);
+      }
+    }
+
     this.logger.info('Fetch completed', {
       rss: results.rss?.items?.length || 0,
       web: results.web.length,
@@ -146,107 +181,81 @@ export class RCAgent {
       return [];
     }
 
-    const articles = await this.webSearcher.fetchMultiple(urls, {
-      concurrency,
-      maxResults,
-      useCache: true
-    });
+    const articles = await this.sourceManager.fetchMultiple(urls, { concurrency });
+
+    for (const article of articles) {
+      if (!article.success) {
+        const originalArticle = this.articles.find(a => a.url === article.url);
+        if (originalArticle && originalArticle.description && originalArticle.description.length > 50) {
+          article.title = originalArticle.title;
+          article.content = originalArticle.description;
+          article.excerpt = originalArticle.description.substring(0, 200);
+          article.success = true;
+          this.logger.info('Using RSS description as fallback', { url: article.url });
+        }
+      }
+    }
+
+    for (const fetchedArticle of articles) {
+      const index = this.articles.findIndex(a => a.url === fetchedArticle.url);
+      if (index !== -1) {
+        this.articles[index] = {
+          ...this.articles[index],
+          ...fetchedArticle,
+          content: fetchedArticle.content || this.articles[index].description || ''
+        };
+      }
+    }
 
     const successful = articles.filter(a => a.success);
     this.logger.info('Article content fetched', { requested: urls.length, success: successful.length });
+
+    if (this.db) {
+      for (const article of this.articles) {
+        await this.db.saveArticle(article);
+      }
+    }
 
     return articles;
   }
 
   async publish(options = {}) {
-    const publishConfig = this.configManager.getPublishConfig();
-    const wpConfig = this.configManager.getWordPressConfig();
-
-    if (!wpConfig) {
+    if (!this.wpManager) {
       throw new Error('WordPress not configured. Configure endpoints.wordpress in config.');
     }
 
+    const publishConfig = this.configManager.getPublishConfig();
     const articles = options.articles || this.articles;
 
     if (!articles || articles.length === 0) {
       throw new Error('No articles to publish. Run "fetch" first.');
     }
 
-    const auth = Buffer.from(`${wpConfig.auth.username}:${wpConfig.auth.password}`).toString('base64');
-    const results = [];
-    let published = 0;
-    let failed = 0;
-    let skipped = 0;
+    const articlesWithContent = articles.filter(a => a.content?.length > 50);
 
-    this.logger.info(`Publishing ${articles.length} articles`, {
-      dryRun: publishConfig.dryRun,
-      categories: publishConfig.categories
-    });
+    if (publishConfig.dryRun) {
+      this.logger.info('[DRY RUN] Would publish articles:', { count: articlesWithContent.length });
+      return {
+        results: articlesWithContent.map(a => ({ url: a.url, title: a.title, status: 'dry-run' })),
+        summary: { published: 0, failed: 0, skipped: 0, total: articlesWithContent.length }
+      };
+    }
 
-    for (let i = 0; i < articles.length; i++) {
-      const article = articles[i];
-      const title = article.title?.substring(0, 200) || 'No title';
-      const content = article.content || article.description || article.excerpt || '';
-      const categories = publishConfig.categories || article.categories || [];
+    const { results, summary } = await this.wpManager.publishMultiple(articlesWithContent);
 
-      if (content.length < 50) {
-        this.logger.warn('Skipping article - too short', { title: title.substring(50) });
-        skipped++;
-        continue;
-      }
-
-      if (publishConfig.dryRun) {
-        this.logger.info(`[DRY RUN] Would publish: ${title.substring(50)}...`);
-        results.push({ url: article.url, title, status: 'skipped', reason: 'dry-run' });
-        skipped++;
-        continue;
-      }
-
-      await this.rateLimiter.acquire('wordpress');
-
-      try {
-        const response = await fetch(wpConfig.url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Basic ${auth}`
-          },
-          body: JSON.stringify({
-            title,
-            content,
-            status: 'publish',
-            categories: categories.map(c => ({ name: c }))
-          })
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
-
-        const result = await response.json();
-        published++;
-        this.logger.info(`Published: ${title.substring(50)}...`);
-        results.push({
-          url: article.url,
-          postId: result.id,
-          link: result.link,
-          title,
-          status: 'published'
-        });
-      } catch (error) {
-        failed++;
-        this.logger.error(`Publish failed: ${title.substring(50)}...`, { error: error.message });
-        results.push({
-          url: article.url,
-          title,
-          status: 'failed',
-          error: error.message
-        });
+    for (const result of results) {
+      if (result.status === 'published' && this.db) {
+        await this.db.markAsPublished(result.url, result.postId);
+      } else if (result.status === 'failed' && this.db) {
+        await this.db.markAsFailed(result.url, result.error);
       }
     }
 
-    const summary = { published, failed, skipped, total: articles.length };
     this.logger.info('Publishing completed', summary);
+
+    if (this.db) {
+      await this.db.recordDailyStats(summary);
+    }
 
     return { results, summary };
   }
@@ -267,39 +276,23 @@ export class RCAgent {
     return article;
   }
 
-  async postToTelegram(message) {
-    const tgConfig = this.config?.endpoints?.telegram;
-
-    if (!tgConfig?.botToken || !tgConfig?.channelId) {
-      throw new Error('Telegram not configured');
+  async testWordPressConnection() {
+    if (!this.wpManager) {
+      return { success: false, error: 'WordPress not configured' };
     }
-
-    await this.rateLimiter.acquire('telegram');
-
-    const url = `https://api.telegram.org/bot${tgConfig.botToken}/sendMessage`;
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: tgConfig.channelId,
-        text: message,
-        parse_mode: 'HTML'
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error(`Telegram API error: ${response.status}`);
-    }
-
-    this.logger.info('Message sent to Telegram');
-    return { status: 'sent' };
+    return await this.wpManager.testConnection();
   }
 
-  getStatus() {
+  async getStats() {
     const configStatus = this.configManager.getStatus();
     const rssConfig = this.configManager.getRSSConfig();
     const searchConfig = this.configManager.getSearchConfig();
     const publishConfig = this.configManager.getPublishConfig();
+
+    let dbStats = null;
+    if (this.db) {
+      dbStats = await this.db.getStats();
+    }
 
     return {
       config: configStatus,
@@ -309,7 +302,10 @@ export class RCAgent {
       publish: publishConfig,
       articlesCount: this.articles.length,
       ollama: this.ollamaClient ? 'connected' : 'disconnected',
-      cache: this.cache.enabled
+      wordpress: this.wpManager ? 'configured' : 'not configured',
+      cache: this.cache.enabled,
+      database: dbStats,
+      uptime: process.uptime()
     };
   }
 
@@ -330,9 +326,18 @@ export class RCAgent {
     this.logger.info('Cache cleared');
   }
 
-  async backupConfig() {
-    const backupPath = await this.configManager.backupConfig();
-    this.logger.info('Config backed up', { path: backupPath });
-    return backupPath;
+  async cleanupDatabase(maxAgeDays = 30) {
+    if (!this.db) return 0;
+    const deleted = await this.db.cleanup(maxAgeDays);
+    this.logger.info('Database cleanup completed', { deleted });
+    return deleted;
+  }
+
+  close() {
+    if (this.db) {
+      this.db.close();
+    }
   }
 }
+
+export default RCAgent;

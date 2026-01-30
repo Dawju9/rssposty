@@ -5,18 +5,28 @@ import { CacheManager } from './utils/cache.js';
 
 export class WebSearcher {
   constructor(options = {}) {
+    const userAgents = [
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Safari/605.1.15',
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0',
+      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    ];
+
     this.client = axios.create({
       timeout: options.timeout || 15000,
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.5'
+        'User-Agent': userAgents[Math.floor(Math.random() * userAgents.length)],
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
+        'Accept-Encoding': 'gzip, deflate',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1'
       }
     });
 
-    this.delayMs = options.delayMs || 1000;
+    this.delayMs = options.delayMs || 2000;
     this.rateLimiter = new RateLimiter({
-      maxRequests: options.maxRequests || 10,
+      maxRequests: options.maxRequests || 5,
       windowMs: options.windowMs || 60000
     });
 
@@ -83,46 +93,115 @@ export class WebSearcher {
         }
     }
 
+    const results = await this.searchWithRetry(keyword, 3);
+
+    if (useCache && results.length > 0) {
+      await this.cache.set(cacheKey, results);
+    }
+
+    return results;
+  }
+
+  async searchWithRetry(keyword, maxRetries = 3) {
     const results = [];
     const encodedKeyword = encodeURIComponent(keyword);
 
-    try {
-      this.log('debug', `Searching DuckDuckGo for "${keyword}"`);
+    for (let attempt = 0; attempt < maxRetries; attempt++) {
+      try {
+        this.log('debug', `Searching DuckDuckGo for "${keyword}" (attempt ${attempt + 1}/${maxRetries})`);
 
-      const searchUrl = `https://duckduckgo.com/html/?q=${encodedKeyword}&kl=us-en`;
-      const response = await this.client.get(searchUrl);
+        const searchUrl = `https://duckduckgo.com/html/?q=${encodedKeyword}&kl=us-en`;
+        const response = await this.client.get(searchUrl);
 
-      const dom = new JSDOM(response.data);
-      const document = dom.window.document;
-      const links = document.querySelectorAll('a.result__a');
+        const dom = new JSDOM(response.data);
+        const document = dom.window.document;
 
-      for (const link of links) {
-        const href = link.getAttribute('href');
-        const title = link.textContent?.trim();
+        const links = document.querySelectorAll('a.result__a');
 
-        if (href && title && href.startsWith('http') && !href.includes('duckduckgo')) {
-          const validation = URLValidator.validate(href);
-          if (validation.valid) {
-            results.push({
-              title,
-              url: href,
-              keyword,
-              source: 'duckduckgo',
-              publishedAt: null
-            });
+        if (links.length === 0) {
+          links.length > 0 || this.log('warn', `No results found for "${keyword}", trying alternative selectors`);
+          const altLinks = document.querySelectorAll('a[data-testid="result-title-a"]');
+          for (const link of altLinks) {
+            const href = link.getAttribute('href');
+            const title = link.textContent?.trim();
+            if (href && title) {
+              const actualUrl = this.extractDuckDuckGoRedirect(href);
+              if (actualUrl) {
+                const validation = URLValidator.validate(actualUrl);
+                if (validation.valid) {
+                  results.push({
+                    title,
+                    url: actualUrl,
+                    keyword,
+                    source: 'duckduckgo',
+                    publishedAt: null
+                  });
+                }
+              }
+            }
+            if (results.length >= 5) break;
+          }
+        } else {
+          for (const link of links) {
+            const href = link.getAttribute('href');
+            const title = link.textContent?.trim();
+
+            if (href && title) {
+              const actualUrl = this.extractDuckDuckGoRedirect(href);
+              if (actualUrl) {
+                const validation = URLValidator.validate(actualUrl);
+                if (validation.valid && !actualUrl.includes('duckduckgo')) {
+                  results.push({
+                    title,
+                    url: actualUrl,
+                    keyword,
+                    source: 'duckduckgo',
+                    publishedAt: null
+                  });
+                }
+              }
+            }
+            if (results.length >= 5) break;
           }
         }
-        if (results.length >= 5) break;
-      }
 
-      if (useCache && results.length > 0) {
-        await this.cache.set(cacheKey, results);
-      }
+        if (results.length > 0) {
+          return results;
+        }
+
+        if (attempt < maxRetries - 1) {
+          const delay = (attempt + 1) * 3000;
+          this.log('warn', `DuckDuckGo returned empty results, retrying in ${delay}ms`);
+          await new Promise(resolve => setTimeout(resolve, delay));
+        }
       } catch (error) {
-        this.log('warn', `DuckDuckGo search failed for "${keyword}"`, { error: error.message });
+        this.log('warn', `DuckDuckGo search failed for "${keyword}" attempt ${attempt + 1}`, { error: error.message });
+        if (attempt < maxRetries - 1) {
+          const delay = (attempt + 1) * 2000;
+          await new Promise(resolve => setTimeout(resolve, delay));
+        }
       }
+    }
 
     return results;
+  }
+
+  extractDuckDuckGoRedirect(url) {
+    if (!url) return null;
+    try {
+      if (url.includes('duckduckgo.com/l/?')) {
+        const urlMatch = url.match(/u=([^&]+)/);
+        if (urlMatch) {
+          return decodeURIComponent(urlMatch[1]);
+        }
+      }
+      if (url.startsWith('/')) {
+        return null;
+      }
+      return url;
+    } catch (error) {
+      return url;
+    }
   }
 
   async fetchArticle(url, options = {}) {
@@ -156,8 +235,23 @@ export class WebSearcher {
         }
       });
 
-      const dom = new JSDOM(response.data);
-      const document = dom.window.document;
+      let document;
+      try {
+        const dom = new JSDOM(response.data, { css: false });
+        document = dom.window.document;
+      } catch (jsdomError) {
+        this.log('warn', `JSDOM parsing error, trying plain text`, { url, error: jsdomError.message });
+        const textContent = response.data.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        return {
+          url,
+          title: 'No title',
+          content: textContent.substring(0, 50000),
+          excerpt: textContent.substring(0, 500),
+          publishedAt: new Date().toISOString(),
+          fetchedAt: new Date().toISOString(),
+          source: 'web'
+        };
+      }
 
       const title = this.extractTitle(document) || 'No title';
       const content = this.extractContent(document) || '';
@@ -196,16 +290,27 @@ export class WebSearcher {
       'h1.entry-title',
       'h1.post-title',
       'h1.article-title',
-      '.headline',
+      'h1.page-title',
       'h1',
+      '.headline',
+      '.article-title',
+      '.post-title',
+      'meta[property="og:title"]',
       'title'
     ];
 
     for (const selector of selectors) {
       try {
-        const element = document.querySelector(selector);
-        if (element && element.textContent?.trim()) {
-          return element.textContent.trim();
+        if (selector.startsWith('meta')) {
+          const element = document.querySelector(selector);
+          if (element && element.getAttribute('content')?.trim()) {
+            return element.getAttribute('content').trim();
+          }
+        } else {
+          const element = document.querySelector(selector);
+          if (element && element.textContent?.trim()) {
+            return element.textContent.trim();
+          }
         }
       } catch (e) {
         continue;
@@ -220,24 +325,48 @@ export class WebSearcher {
 
     const selectors = [
       'article',
+      '[role="main"]',
       '.post-content',
       '.entry-content',
       '.article-body',
       '.content',
       'main',
       '.story-body',
-      '.article-content'
+      '.article-content',
+      '.article__content',
+      '.news-body',
+      '.article-text',
+      '.article',
+      '.post',
+      '.blog-post',
+      '#article-body',
+      '.articleBody',
+      '.story-body__inner',
+      '.article-inner'
     ];
 
     for (const selector of selectors) {
       try {
         const element = document.querySelector(selector);
-        if (element && element.textContent?.trim()) {
+        if (element && element.textContent?.trim() && element.textContent.length > 100) {
           return this.cleanContent(element.textContent);
         }
       } catch (e) {
         continue;
       }
+    }
+
+    const paragraphs = document.querySelectorAll('p');
+    let paragraphText = '';
+    for (const p of paragraphs) {
+      const text = p.textContent?.trim();
+      if (text && text.length > 50) {
+        paragraphText += text + '\n\n';
+      }
+    }
+    
+    if (paragraphText.length > 100) {
+      return this.cleanContent(paragraphText);
     }
 
     return this.cleanContent(document.body?.textContent || '');
