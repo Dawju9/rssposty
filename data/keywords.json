@@ -1,0 +1,262 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-01-31T16:00:00.000Z",
+  "keywords": [
+    {
+      "id": 1,
+      "word": "szkolenia sprzedażowe",
+      "enabled": true,
+      "priority": "high",
+      "category": "sales",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 2,
+      "word": "kompetencje miękkie",
+      "enabled": true,
+      "priority": "high",
+      "category": "soft-skills",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 3,
+      "word": "rozwój zespołu",
+      "enabled": true,
+      "priority": "high",
+      "category": "leadership",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 4,
+      "word": "biznes",
+      "enabled": true,
+      "priority": "medium",
+      "category": "business",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 5,
+      "word": "leadership",
+      "enabled": true,
+      "priority": "medium",
+      "category": "leadership",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 3
+    },
+    {
+      "id": 6,
+      "word": "szkolenia",
+      "enabled": true,
+      "priority": "medium",
+      "category": "training",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 7,
+      "word": "sprzedaż",
+      "enabled": true,
+      "priority": "high",
+      "category": "sales",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 8,
+      "word": "training",
+      "enabled": true,
+      "priority": "medium",
+      "category": "training",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 9,
+      "word": "coaching",
+      "enabled": true,
+      "priority": "medium",
+      "category": "development",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 10,
+      "word": "motywacja",
+      "enabled": true,
+      "priority": "low",
+      "category": "psychology",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 11,
+      "word": "sales training",
+      "enabled": true,
+      "priority": "high",
+      "category": "sales",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 12,
+      "word": "soft skills",
+      "enabled": true,
+      "priority": "high",
+      "category": "soft-skills",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 13,
+      "word": "team development",
+      "enabled": true,
+      "priority": "high",
+      "category": "leadership",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 14,
+      "word": "business",
+      "enabled": true,
+      "priority": "high",
+      "category": "business",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 3
+    },
+    {
+      "id": 15,
+      "word": "entrepreneurship",
+      "enabled": true,
+      "priority": "medium",
+      "category": "business",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 16,
+      "word": "management",
+      "enabled": true,
+      "priority": "medium",
+      "category": "leadership",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 17,
+      "word": "workplace training",
+      "enabled": true,
+      "priority": "medium",
+      "category": "training",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 18,
+      "word": "professional development",
+      "enabled": true,
+      "priority": "medium",
+      "category": "development",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 19,
+      "word": "skill development",
+      "enabled": true,
+      "priority": "medium",
+      "category": "development",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    },
+    {
+      "id": 20,
+      "word": "motivation",
+      "enabled": true,
+      "priority": "low",
+      "category": "psychology",
+      "source": "config",
+      "lastSearch": null,
+      "articleCount": 0,
+      "matchCount": 0
+    }
+  ],
+  "categories": {
+    "sales": {
+      "description": "Sprzedaż i techniki sprzedażowe",
+      "color": "#4CAF50"
+    },
+    "soft-skills": {
+      "description": "Kompetencje miękkie",
+      "color": "#2196F3"
+    },
+    "leadership": {
+      "description": "Przywództwo i zarządzanie",
+      "color": "#FF9800"
+    },
+    "business": {
+      "description": "Biznes ogólnie",
+      "color": "#9C27B0"
+    },
+    "training": {
+      "description": "Szkolenia i treningi",
+      "color": "#F44336"
+    },
+    "development": {
+      "description": "Rozwój osobisty i zawodowy",
+      "color": "#00BCD4"
+    },
+    "psychology": {
+      "description": "Psychologia biznesu",
+      "color": "#795548"
+    }
+  },
+  "stats": {
+    "totalKeywords": 20,
+    "enabledKeywords": 20,
+    "totalMatches": 6,
+    "lastFetchDate": "2026-01-31T16:29:51.673Z"
+  }
+}

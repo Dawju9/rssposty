@@ -1,12 +1,19 @@
 import axios from 'axios';
 
 export class OllamaClient {
-  constructor(baseUrl = 'http://localhost:11434', model = 'llama2') {
+  constructor(baseUrl = 'http://127.0.0.1:11434', model = 'qwen2.5:7b', options = {}) {
     this.baseUrl = baseUrl;
     this.model = model;
+    this.options = {
+      numCtx: options.numCtx || 2048,
+      numGPU: options.numGPU || 0,
+      lowVRAM: options.lowVRAM || true,
+      memoryLimit: options.memoryLimit || '6gb'
+    };
+
     this.client = axios.create({
       baseURL: baseUrl,
-      timeout: 60000
+      timeout: options.timeout || 300000
     });
   }
 
@@ -35,7 +42,12 @@ export class OllamaClient {
         model: this.model,
         prompt,
         stream: false,
-        ...options
+        options: {
+          num_ctx: this.options.numCtx,
+          num_gpu: this.options.numGPU,
+          low_vram: this.options.lowVRAM,
+          memory_limit: this.options.memoryLimit
+        }
       });
       return response.data.response;
     });
@@ -62,6 +74,32 @@ The article should:
 Write the complete article below:`;
 
     return await this.generate(prompt);
+  }
+
+  async processArticle(options = {}) {
+    const { title, content, keywords = [] } = options;
+
+    const maxContentLength = 1500;
+    const truncatedContent = content.length > maxContentLength
+      ? content.substring(0, maxContentLength) + '...[treść skrócona]'
+      : content;
+
+    const prompt = `Przetwórz poniższy artykuł:
+
+TYTUŁ: ${title}
+SŁOWA KLUCZOWE: ${keywords.join(', ')}
+TREŚĆ (skrócona):
+${truncatedContent}
+
+ZADANIE:
+1. Zachowaj kluczowe informacje z oryginału
+2. Przepisz własnymi słowami
+3. Zachowaj strukturę z nagłówkami
+4. Napisz 400-600 słów
+
+Napisz przetworzoną wersję artykułu:`;
+
+    return { content: await this.generate(prompt) };
   }
 
   async analyzeContent(content, keywords) {

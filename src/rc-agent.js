@@ -273,6 +273,17 @@ export class RCAgent {
     const article = await this.ollamaClient.generateArticle(articleKeywords, articleStyle);
 
     this.logger.info('Article generated');
+
+    if (this.db) {
+      const result = await this.db.saveGeneratedArticle({
+        title: article.split('\n')[0]?.substring(0, 500) || 'Generated Article',
+        content: article,
+        source: 'generated',
+        keyword: articleKeywords[0]
+      });
+      this.logger.info('Generated article saved', { articleNumber: result.articleNumber });
+    }
+
     return article;
   }
 
@@ -321,6 +332,23 @@ export class RCAgent {
     this.articles = [];
   }
 
+  cleanContent(text) {
+    if (!text) return '';
+
+    return text
+      .replace(/\r\n/g, '\n')
+      .replace(/\t/g, ' ')
+      .replace(/\s+/g, ' ')
+      .replace(/\[[^\]]*\]/g, '')
+      .replace(/\[.*?\]/g, '')
+      .replace(/More:.*$/gm, '')
+      .replace(/Advertisement:/gi, '')
+      .replace(/Reklama:/gi, '')
+      .replace(/Sponsored:/gi, '')
+      .replace(/^https?:\/\/[^\s]+$/gm, '')
+      .trim();
+  }
+
   async clearCache() {
     await this.cache.clear();
     this.logger.info('Cache cleared');
@@ -328,9 +356,22 @@ export class RCAgent {
 
   async cleanupDatabase(maxAgeDays = 30) {
     if (!this.db) return 0;
-    const deleted = await this.db.cleanup(maxAgeDays);
-    this.logger.info('Database cleanup completed', { deleted });
-    return deleted;
+
+    const config = this.config.cleanup || {};
+    const days = config.rawMaxAgeDays || 4;
+
+    const result = await this.db.cleanupOldArticles(days);
+    return result.deleted;
+  }
+
+  async archiveOldPublished() {
+    if (!this.db) return 0;
+
+    const config = this.config.cleanup || {};
+    const days = config.publishedArchiveDays || 90;
+
+    const result = await this.db.archiveOldPublished(days);
+    return result.archived;
   }
 
   close() {

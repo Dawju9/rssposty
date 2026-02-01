@@ -4,14 +4,66 @@
     "kompetencje miękkie",
     "rozwój zespołu",
     "biznes",
-    "leadership"
+    "leadership",
+    "sprzedaż",
+    "szkolenia",
+    "coaching"
   ],
   "rss": {
     "googleNews": true,
-    "customFeeds": []
+    "customFeeds": [
+      {
+        "url": "https://feeds.bbci.co.uk/news/rss.xml",
+        "name": "BBC News",
+        "enabled": true,
+        "priority": "high"
+      },
+      {
+        "url": "https://www.ft.com/rss/technology",
+        "name": "Financial Times Technology",
+        "enabled": true,
+        "priority": "high"
+      },
+      {
+        "url": "https://www.forbes.com/real-time/feed2/",
+        "name": "Forbes Real Time",
+        "enabled": true,
+        "priority": "medium"
+      },
+      {
+        "url": "https://techcrunch.com/feed/",
+        "name": "TechCrunch",
+        "enabled": true,
+        "priority": "medium"
+      },
+      {
+        "url": "https://www.theguardian.com/business/rss",
+        "name": "The Guardian Business",
+        "enabled": true,
+        "priority": "medium"
+      },
+      {
+        "url": "https://www.reutersagency.com/feed/",
+        "name": "Reuters Agency",
+        "enabled": true,
+        "priority": "high"
+      },
+      {
+        "url": "https://www.inc.com/feeds/site/allRss.xml",
+        "name": "Inc.com",
+        "enabled": true,
+        "priority": "medium"
+      },
+      {
+        "url": "https://www.entrepreneur.com/feeds/.xml",
+        "name": "Entrepreneur",
+        "enabled": true,
+        "priority": "medium"
+      }
+    ]
   },
   "search": {
-    "sources": ["duckduckgo", "rss"],
+    "sources": ["rss", "duckduckgo", "bing", "yahoo"],
     "maxResults": 10,
     "maxAgeDays": 7,
     "concurrency": 3,
@@ -20,13 +72,52 @@
     "retryDelay": 3000
   },
   "ollama": {
-    "baseUrl": "http://localhost:11434",
-    "model": "llama3.2:latest"
+    "baseUrl": "http://127.0.0.1:11434",
+    "model": "qwen2.5:7b",
+    "timeout": 300000,
+    "memoryLimit": "6gb",
+    "numCtx": 2048,
+    "numGPU": 0,
+    "lowVRAM": true
   },
   "article": {
     "style": "professional",
     "minLength": 500,
-    "maxLength": 800
+    "maxLength": 800,
+    "processPrompt": "Przetwórz ten artykuł: zachowaj kluczowe informacje, przepisz własnymi słowami, zachowaj strukturę."
+  },
+  "cleanup": {
+    "enabled": true,
+    "intervalHours": 24,
+    "rawMaxAgeDays": 4,
+    "processedMaxAgeDays": 4,
+    "readyMaxAgeDays": 4,
+    "publishedArchiveDays": 90,
+    "maxArticlesPerStatus": {
+      "raw": 5,
+      "processed": 5,
+      "ready": 5
+    }
+  },
+  "retry": {
+    "enabled": true,
+    "maxAttempts": 3,
+    "backoffMultiplier": 2,
+    "initialDelayMs": 1000
+  },
+  "customFeeds": {
+    "enabled": true,
+    "schedule": "0 */4 * * *",
+    "feeds": [
+      "https://feeds.bbci.co.uk/news/rss.xml",
+      "https://www.ft.com/rss/technology",
+      "https://www.forbes.com/real-time/feed2/",
+      "https://techcrunch.com/feed/",
+      "https://www.theguardian.com/business/rss"
+    ],
+    "maxItemsPerFeed": 10,
+    "minKeywordScore": 1,
+    "filterByKeywords": true
   },
   "scheduler": {
     "enabled": true,

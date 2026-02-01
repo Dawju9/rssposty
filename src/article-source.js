@@ -5,7 +5,7 @@ import { CacheManager } from './utils/cache.js';
 
 export class ArticleSourceManager {
   constructor(options = {}) {
-    this.sources = options.sources || ['duckduckgo', 'rss'];
+    this.sources = options.sources || ['rss', 'duckduckgo'];
     this.cache = new CacheManager({ enabled: options.cache !== false });
     this.logger = options.logger || { log: () => {}, info: () => {}, warn: () => {}, error: () => {} };
 
@@ -62,17 +62,26 @@ export class ArticleSourceManager {
     let results = [];
 
     switch (source) {
-      case 'duckduckgo':
-        results = await this.searchDuckDuckGo(keyword);
-        break;
       case 'rss':
         results = await this.searchRSS(keyword);
+        break;
+      case 'duckduckgo':
+        results = await this.searchDuckDuckGo(keyword);
         break;
       case 'bing':
         results = await this.searchBing(keyword);
         break;
       case 'google':
         results = await this.searchGoogle(keyword);
+        break;
+      case 'startpage':
+        results = await this.searchStartpage(keyword);
+        break;
+      case 'yahoo':
+        results = await this.searchYahoo(keyword);
+        break;
+      case 'yandex':
+        results = await this.searchYandex(keyword);
         break;
       default:
         this.logger.warn(`Unknown source: ${source}`);
@@ -249,6 +258,117 @@ export class ArticleSourceManager {
       }
     } catch (error) {
       this.logger.error(`Google search failed`, { keyword, error: error.message });
+    }
+
+    return results;
+  }
+
+  async searchStartpage(keyword) {
+    const results = [];
+    const client = this.clients.get('startpage') || this.clients.get('duckduckgo');
+
+    try {
+      const encodedKeyword = encodeURIComponent(keyword);
+      const response = await client.get(`https://www.startpage.com/do/search?q=${encodedKeyword}&cat=web`);
+      const dom = new JSDOM(response.data);
+      const document = dom.window.document;
+
+      const links = document.querySelectorAll('a.result-link');
+
+      for (const link of links) {
+        const href = link.getAttribute('href');
+        const title = link.textContent?.trim();
+
+        if (href && title && href.startsWith('http') && !href.includes('startpage.com')) {
+          const validation = URLValidator.validate(href);
+          if (validation.valid) {
+            results.push({
+              title,
+              url: href,
+              keyword,
+              source: 'startpage',
+              publishedAt: null
+            });
+          }
+        }
+        if (results.length >= 5) break;
+      }
+    } catch (error) {
+      this.logger.error(`Startpage search failed`, { keyword, error: error.message });
+    }
+
+    return results;
+  }
+
+  async searchYahoo(keyword) {
+    const results = [];
+    const client = this.clients.get('yahoo') || this.clients.get('duckduckgo');
+
+    try {
+      const encodedKeyword = encodeURIComponent(keyword);
+      const response = await client.get(`https://search.yahoo.com/search?p=${encodedKeyword}`);
+      const dom = new JSDOM(response.data);
+      const document = dom.window.document;
+
+      const links = document.querySelectorAll('h3.title a');
+
+      for (const link of links) {
+        const href = link.getAttribute('href');
+        const title = link.textContent?.trim();
+
+        if (href && title && href.startsWith('http') && !href.includes('yahoo.com')) {
+          const validation = URLValidator.validate(href);
+          if (validation.valid) {
+            results.push({
+              title,
+              url: href,
+              keyword,
+              source: 'yahoo',
+              publishedAt: null
+            });
+          }
+        }
+        if (results.length >= 5) break;
+      }
+    } catch (error) {
+      this.logger.error(`Yahoo search failed`, { keyword, error: error.message });
+    }
+
+    return results;
+  }
+
+  async searchYandex(keyword) {
+    const results = [];
+    const client = this.clients.get('yandex') || this.clients.get('duckduckgo');
+
+    try {
+      const encodedKeyword = encodeURIComponent(keyword);
+      const response = await client.get(`https://yandex.com/search/?text=${encodedKeyword}`);
+      const dom = new JSDOM(response.data);
+      const document = dom.window.document;
+
+      const links = document.querySelectorAll('a.organic__url');
+
+      for (const link of links) {
+        const href = link.getAttribute('href');
+        const title = link.textContent?.trim();
+
+        if (href && title && href.startsWith('http') && !href.includes('yandex.com')) {
+          const validation = URLValidator.validate(href);
+          if (validation.valid) {
+            results.push({
+              title,
+              url: href,
+              keyword,
+              source: 'yandex',
+              publishedAt: null
+            });
+          }
+        }
+        if (results.length >= 5) break;
+      }
+    } catch (error) {
+      this.logger.error(`Yandex search failed`, { keyword, error: error.message });
     }
 
     return results;

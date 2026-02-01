@@ -707,3 +707,199 @@
 [2026-01-30T22:47:40.024Z] [ERROR] Publish failed after retries: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
 [2026-01-30T22:47:40.024Z] [INFO] Publishing completed {"published":0,"failed":8,"skipped":0,"total":8}
 [2026-01-30T22:47:40.024Z] [INFO] === Scheduler Run Completed === {"duration":"61s","articlesFetched":20,"contentFetched":8,"totalArticles":32}
+[2026-01-30T23:01:38.870Z] [INFO] === Scheduler Run Started === {"runNumber":5,"timestamp":"2026-01-30T23:01:38.870Z"}
+[2026-01-30T23:01:38.871Z] [INFO] Starting fetch {"keywords":5,"options":{"keywords":["szkolenia sprzedażowe","kompetencje miękkie","rozwój zespołu","biznes","leadership"]}}
+[2026-01-30T23:01:38.871Z] [INFO] Fetching RSS feeds
+[2026-01-30T23:01:44.071Z] [INFO] RSS fetch completed {"totalFeeds":5,"processed":5,"failed":0,"totalItems":10}
+[2026-01-30T23:01:44.072Z] [INFO] Searching web {"keyword":"szkolenia sprzedażowe"}
+[2026-01-30T23:01:45.073Z] [INFO] Searching web {"keyword":"kompetencje miękkie"}
+[2026-01-30T23:01:45.997Z] [INFO] Searching web {"keyword":"rozwój zespołu"}
+[2026-01-30T23:01:46.860Z] [INFO] Searching web {"keyword":"biznes"}
+[2026-01-30T23:01:47.746Z] [INFO] Searching web {"keyword":"leadership"}
+[2026-01-30T23:01:48.648Z] [INFO] Fetch completed {"rss":10,"web":25,"total":20}
+[2026-01-30T23:01:52.192Z] [ERROR] Failed to fetch article {"url":"https://www.gowork.pl/poradnik/17/rozwoj-osobisty/kompetencje-miekkie-co-to-przyklady-jak-je-rozwijac/","error":"Request failed with status code 403"}
+[2026-01-30T23:02:53.579Z] [ERROR] Failed to fetch article {"url":"https://cyrekdigital.com/pl/baza-wiedzy/kompetencje-miekkie-przyklady/","error":"Request failed with status code 404"}
+[2026-01-30T23:02:53.579Z] [INFO] Batch fetch completed {"requested":10,"success":8}
+[2026-01-30T23:02:53.579Z] [INFO] Article content fetched {"requested":10,"success":8}
+[2026-01-30T23:02:53.579Z] [INFO] Publishing 8 articles {"dryRun":false,"categories":["Crawlfounding","Finances"]}
+[2026-01-30T23:02:53.992Z] [WARN] Publish attempt 1 failed: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:02:56.242Z] [WARN] Publish attempt 2 failed: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:00.513Z] [WARN] Publish attempt 3 failed: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:00.513Z] [ERROR] Publish failed after retries: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:00.755Z] [WARN] Publish attempt 1 failed: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:02.997Z] [WARN] Publish attempt 2 failed: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:07.274Z] [WARN] Publish attempt 3 failed: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:07.274Z] [ERROR] Publish failed after retries: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:07.480Z] [WARN] Publish attempt 1 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:09.702Z] [WARN] Publish attempt 2 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:13.998Z] [WARN] Publish attempt 3 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:13.998Z] [ERROR] Publish failed after retries: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:14.210Z] [WARN] Publish attempt 1 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:16.446Z] [WARN] Publish attempt 2 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:20.679Z] [WARN] Publish attempt 3 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:20.679Z] [ERROR] Publish failed after retries: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:20.895Z] [WARN] Publish attempt 1 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:23.196Z] [WARN] Publish attempt 2 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:27.415Z] [WARN] Publish attempt 3 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:27.415Z] [ERROR] Publish failed after retries: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:27.678Z] [WARN] Publish attempt 1 failed: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:29.953Z] [WARN] Publish attempt 2 failed: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:34.209Z] [WARN] Publish attempt 3 failed: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:34.209Z] [ERROR] Publish failed after retries: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:34.445Z] [WARN] Publish attempt 1 failed: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:36.680Z] [WARN] Publish attempt 2 failed: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:40.902Z] [WARN] Publish attempt 3 failed: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:40.902Z] [ERROR] Publish failed after retries: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:41.162Z] [WARN] Publish attempt 1 failed: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:43.406Z] [WARN] Publish attempt 2 failed: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:47.638Z] [WARN] Publish attempt 3 failed: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:47.638Z] [ERROR] Publish failed after retries: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:03:47.638Z] [INFO] Publishing completed {"published":0,"failed":8,"skipped":0,"total":8}
+[2026-01-30T23:03:47.638Z] [INFO] === Scheduler Run Completed === {"duration":"129s","articlesFetched":20,"contentFetched":8,"totalArticles":40}
+[2026-01-30T23:16:38.970Z] [INFO] === Scheduler Run Started === {"runNumber":6,"timestamp":"2026-01-30T23:16:38.970Z"}
+[2026-01-30T23:16:38.971Z] [INFO] Starting fetch {"keywords":5,"options":{"keywords":["szkolenia sprzedażowe","kompetencje miękkie","rozwój zespołu","biznes","leadership"]}}
+[2026-01-30T23:16:38.971Z] [INFO] Fetching RSS feeds
+[2026-01-30T23:16:43.925Z] [INFO] RSS fetch completed {"totalFeeds":5,"processed":5,"failed":0,"totalItems":10}
+[2026-01-30T23:16:43.926Z] [INFO] Searching web {"keyword":"szkolenia sprzedażowe"}
+[2026-01-30T23:16:43.928Z] [INFO] Searching web {"keyword":"kompetencje miękkie"}
+[2026-01-30T23:16:43.928Z] [INFO] Searching web {"keyword":"rozwój zespołu"}
+[2026-01-30T23:16:43.928Z] [INFO] Searching web {"keyword":"biznes"}
+[2026-01-30T23:16:43.929Z] [INFO] Searching web {"keyword":"leadership"}
+[2026-01-30T23:16:43.930Z] [INFO] Fetch completed {"rss":10,"web":25,"total":20}
+[2026-01-30T23:16:44.466Z] [ERROR] Failed to fetch article {"url":"https://www.gowork.pl/poradnik/17/rozwoj-osobisty/kompetencje-miekkie-co-to-przyklady-jak-je-rozwijac/","error":"Request failed with status code 403"}
+[2026-01-30T23:16:45.598Z] [ERROR] Failed to fetch article {"url":"https://cyrekdigital.com/pl/baza-wiedzy/kompetencje-miekkie-przyklady/","error":"Request failed with status code 404"}
+[2026-01-30T23:16:45.598Z] [INFO] Batch fetch completed {"requested":10,"success":8}
+[2026-01-30T23:16:45.600Z] [INFO] Article content fetched {"requested":10,"success":8}
+[2026-01-30T23:16:45.600Z] [INFO] Publishing 8 articles {"dryRun":false,"categories":["Crawlfounding","Finances"]}
+[2026-01-30T23:16:46.157Z] [WARN] Publish attempt 1 failed: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:16:48.418Z] [WARN] Publish attempt 2 failed: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:16:52.655Z] [WARN] Publish attempt 3 failed: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:16:52.655Z] [ERROR] Publish failed after retries: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:16:52.850Z] [WARN] Publish attempt 1 failed: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:16:55.045Z] [WARN] Publish attempt 2 failed: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:16:59.269Z] [WARN] Publish attempt 3 failed: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:16:59.269Z] [ERROR] Publish failed after retries: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:16:59.456Z] [WARN] Publish attempt 1 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:01.630Z] [WARN] Publish attempt 2 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:05.813Z] [WARN] Publish attempt 3 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:05.813Z] [ERROR] Publish failed after retries: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:05.994Z] [WARN] Publish attempt 1 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:08.162Z] [WARN] Publish attempt 2 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:12.327Z] [WARN] Publish attempt 3 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:12.328Z] [ERROR] Publish failed after retries: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:12.504Z] [WARN] Publish attempt 1 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:14.672Z] [WARN] Publish attempt 2 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:18.855Z] [WARN] Publish attempt 3 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:18.856Z] [ERROR] Publish failed after retries: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:19.038Z] [WARN] Publish attempt 1 failed: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:21.234Z] [WARN] Publish attempt 2 failed: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:25.445Z] [WARN] Publish attempt 3 failed: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:25.445Z] [ERROR] Publish failed after retries: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:25.622Z] [WARN] Publish attempt 1 failed: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:27.822Z] [WARN] Publish attempt 2 failed: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:31.996Z] [WARN] Publish attempt 3 failed: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:31.996Z] [ERROR] Publish failed after retries: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:32.234Z] [WARN] Publish attempt 1 failed: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:34.423Z] [WARN] Publish attempt 2 failed: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:38.632Z] [WARN] Publish attempt 3 failed: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:38.633Z] [ERROR] Publish failed after retries: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:17:38.633Z] [INFO] Publishing completed {"published":0,"failed":8,"skipped":0,"total":8}
+[2026-01-30T23:17:38.633Z] [INFO] === Scheduler Run Completed === {"duration":"60s","articlesFetched":20,"contentFetched":8,"totalArticles":48}
+[2026-01-30T23:31:39.050Z] [INFO] === Scheduler Run Started === {"runNumber":7,"timestamp":"2026-01-30T23:31:39.050Z"}
+[2026-01-30T23:31:39.051Z] [INFO] Starting fetch {"keywords":5,"options":{"keywords":["szkolenia sprzedażowe","kompetencje miękkie","rozwój zespołu","biznes","leadership"]}}
+[2026-01-30T23:31:39.051Z] [INFO] Fetching RSS feeds
+[2026-01-30T23:31:44.109Z] [INFO] RSS fetch completed {"totalFeeds":5,"processed":5,"failed":0,"totalItems":10}
+[2026-01-30T23:31:44.109Z] [INFO] Searching web {"keyword":"szkolenia sprzedażowe"}
+[2026-01-30T23:31:44.112Z] [INFO] Searching web {"keyword":"kompetencje miękkie"}
+[2026-01-30T23:31:44.113Z] [INFO] Searching web {"keyword":"rozwój zespołu"}
+[2026-01-30T23:31:44.114Z] [INFO] Searching web {"keyword":"biznes"}
+[2026-01-30T23:31:44.114Z] [INFO] Searching web {"keyword":"leadership"}
+[2026-01-30T23:31:44.116Z] [INFO] Fetch completed {"rss":10,"web":25,"total":20}
+[2026-01-30T23:31:44.653Z] [ERROR] Failed to fetch article {"url":"https://www.gowork.pl/poradnik/17/rozwoj-osobisty/kompetencje-miekkie-co-to-przyklady-jak-je-rozwijac/","error":"Request failed with status code 403"}
+[2026-01-30T23:31:45.789Z] [ERROR] Failed to fetch article {"url":"https://cyrekdigital.com/pl/baza-wiedzy/kompetencje-miekkie-przyklady/","error":"Request failed with status code 404"}
+[2026-01-30T23:31:45.791Z] [INFO] Batch fetch completed {"requested":10,"success":8}
+[2026-01-30T23:31:45.791Z] [INFO] Article content fetched {"requested":10,"success":8}
+[2026-01-30T23:31:45.792Z] [INFO] Publishing 8 articles {"dryRun":false,"categories":["Crawlfounding","Finances"]}
+[2026-01-30T23:31:46.210Z] [WARN] Publish attempt 1 failed: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:31:48.450Z] [WARN] Publish attempt 2 failed: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:31:52.701Z] [WARN] Publish attempt 3 failed: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:31:52.701Z] [ERROR] Publish failed after retries: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:31:53.196Z] [WARN] Publish attempt 1 failed: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:31:55.449Z] [WARN] Publish attempt 2 failed: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:31:59.735Z] [WARN] Publish attempt 3 failed: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:31:59.735Z] [ERROR] Publish failed after retries: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:31:59.960Z] [WARN] Publish attempt 1 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:02.217Z] [WARN] Publish attempt 2 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:06.467Z] [WARN] Publish attempt 3 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:06.467Z] [ERROR] Publish failed after retries: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:06.698Z] [WARN] Publish attempt 1 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:09.063Z] [WARN] Publish attempt 2 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:13.271Z] [WARN] Publish attempt 3 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:13.271Z] [ERROR] Publish failed after retries: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:13.496Z] [WARN] Publish attempt 1 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:15.736Z] [WARN] Publish attempt 2 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:19.971Z] [WARN] Publish attempt 3 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:19.972Z] [ERROR] Publish failed after retries: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:20.209Z] [WARN] Publish attempt 1 failed: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:22.500Z] [WARN] Publish attempt 2 failed: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:26.740Z] [WARN] Publish attempt 3 failed: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:26.740Z] [ERROR] Publish failed after retries: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:26.966Z] [WARN] Publish attempt 1 failed: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:29.239Z] [WARN] Publish attempt 2 failed: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:33.445Z] [WARN] Publish attempt 3 failed: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:33.445Z] [ERROR] Publish failed after retries: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:33.653Z] [WARN] Publish attempt 1 failed: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:36.075Z] [WARN] Publish attempt 2 failed: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:40.300Z] [WARN] Publish attempt 3 failed: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:40.300Z] [ERROR] Publish failed after retries: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:32:40.300Z] [INFO] Publishing completed {"published":0,"failed":8,"skipped":0,"total":8}
+[2026-01-30T23:32:40.300Z] [INFO] === Scheduler Run Completed === {"duration":"61s","articlesFetched":20,"contentFetched":8,"totalArticles":56}
+[2026-01-30T23:46:39.098Z] [INFO] === Scheduler Run Started === {"runNumber":8,"timestamp":"2026-01-30T23:46:39.097Z"}
+[2026-01-30T23:46:39.098Z] [INFO] Starting fetch {"keywords":5,"options":{"keywords":["szkolenia sprzedażowe","kompetencje miękkie","rozwój zespołu","biznes","leadership"]}}
+[2026-01-30T23:46:39.098Z] [INFO] Fetching RSS feeds
+[2026-01-30T23:46:44.012Z] [INFO] RSS fetch completed {"totalFeeds":5,"processed":5,"failed":0,"totalItems":10}
+[2026-01-30T23:46:44.012Z] [INFO] Searching web {"keyword":"szkolenia sprzedażowe"}
+[2026-01-30T23:46:44.013Z] [INFO] Searching web {"keyword":"kompetencje miękkie"}
+[2026-01-30T23:46:44.013Z] [INFO] Searching web {"keyword":"rozwój zespołu"}
+[2026-01-30T23:46:44.014Z] [INFO] Searching web {"keyword":"biznes"}
+[2026-01-30T23:46:44.014Z] [INFO] Searching web {"keyword":"leadership"}
+[2026-01-30T23:46:44.015Z] [INFO] Fetch completed {"rss":10,"web":25,"total":20}
+[2026-01-30T23:46:44.551Z] [ERROR] Failed to fetch article {"url":"https://www.gowork.pl/poradnik/17/rozwoj-osobisty/kompetencje-miekkie-co-to-przyklady-jak-je-rozwijac/","error":"Request failed with status code 403"}
+[2026-01-30T23:46:45.686Z] [ERROR] Failed to fetch article {"url":"https://cyrekdigital.com/pl/baza-wiedzy/kompetencje-miekkie-przyklady/","error":"Request failed with status code 404"}
+[2026-01-30T23:46:45.687Z] [INFO] Batch fetch completed {"requested":10,"success":8}
+[2026-01-30T23:46:45.687Z] [INFO] Article content fetched {"requested":10,"success":8}
+[2026-01-30T23:46:45.687Z] [INFO] Publishing 8 articles {"dryRun":false,"categories":["Crawlfounding","Finances"]}
+[2026-01-30T23:46:46.063Z] [WARN] Publish attempt 1 failed: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:46:48.328Z] [WARN] Publish attempt 2 failed: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:46:52.611Z] [WARN] Publish attempt 3 failed: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:46:52.611Z] [ERROR] Publish failed after retries: cie [2026]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:46:52.865Z] [WARN] Publish attempt 1 failed: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:46:55.115Z] [WARN] Publish attempt 2 failed: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:46:59.445Z] [WARN] Publish attempt 3 failed: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:46:59.446Z] [ERROR] Publish failed after retries: y z technik sprzedaży!... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:46:59.672Z] [WARN] Publish attempt 1 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:01.924Z] [WARN] Publish attempt 2 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:06.217Z] [WARN] Publish attempt 3 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:06.218Z] [ERROR] Publish failed after retries: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:06.500Z] [WARN] Publish attempt 1 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:08.718Z] [WARN] Publish attempt 2 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:12.966Z] [WARN] Publish attempt 3 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:12.966Z] [ERROR] Publish failed after retries: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:13.203Z] [WARN] Publish attempt 1 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:15.439Z] [WARN] Publish attempt 2 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:19.664Z] [WARN] Publish attempt 3 failed: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:19.664Z] [ERROR] Publish failed after retries: ... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:19.871Z] [WARN] Publish attempt 1 failed: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:22.138Z] [WARN] Publish attempt 2 failed: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:26.435Z] [WARN] Publish attempt 3 failed: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:26.435Z] [ERROR] Publish failed after retries: ci [przykłady]... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:26.642Z] [WARN] Publish attempt 1 failed: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:28.881Z] [WARN] Publish attempt 2 failed: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:33.095Z] [WARN] Publish attempt 3 failed: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:33.095Z] [ERROR] Publish failed after retries: ń, lista cech... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:33.317Z] [WARN] Publish attempt 1 failed: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:35.587Z] [WARN] Publish attempt 2 failed: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:39.871Z] [WARN] Publish attempt 3 failed: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:39.871Z] [ERROR] Publish failed after retries: umiejętności... {"error":"HTTP 401: {\"code\":\"rest_login_required\",\"message\":\"REST API restricted to authenticated users.\",\"data\":{\"statu"}
+[2026-01-30T23:47:39.871Z] [INFO] Publishing completed {"published":0,"failed":8,"skipped":0,"total":8}
+[2026-01-30T23:47:39.871Z] [INFO] === Scheduler Run Completed === {"duration":"61s","articlesFetched":20,"contentFetched":8,"totalArticles":64}
